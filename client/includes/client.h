@@ -11,5 +11,10 @@ typedef struct {
 	char country[20];
 } user_info;
 
-
 int init_client(char IP_address[], unsigned int port);
+int close_connection();
+
+int send_message(user_info to_send);
+
+int write_user_to_file(user_info to_write);
+int read_user_file(user_info *read_user);
