@@ -11,9 +11,20 @@
  */
 int main(int argc, char *argv[])
 {
+	user_info user;
     unsigned port = 0;
+	int read_return_val;
 	port = atoi(argv[2]);
 	printf("starting connecton at ip: %s and port %d\n", argv[1], port);
 	init_host(argv[1], port);
+	for(;;)
+	{
+		read_return_val = read_socket(&user);
+		if(!read_return_val) {
+			host_write_user_to_file(user);
+		} else {
+			query_database(read_return_val);
+		}
+	}
     return 0;
 }

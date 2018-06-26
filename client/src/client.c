@@ -12,7 +12,6 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <string.h>
 
 #define SUCCESS 1
 #define FILEPATH_CSV "user_info.csv"
@@ -46,7 +45,7 @@ int send_message(user_info to_send)
     send(client_id, &to_send, sizeof(user_info), 0);
 }
 
-int write_user_to_file(user_info to_write)
+void write_user_to_file(user_info to_write)
 {
     char string_to_write[1000] = {"\0"};
     int fd = 0;
@@ -69,7 +68,7 @@ int write_user_to_file(user_info to_write)
     close(fd);
 }
 
-int read_user_file(user_info *read_user)
+void read_user_file(user_info *read_user)
 {
     char string_to_read[1000];
     char split_string[100];
