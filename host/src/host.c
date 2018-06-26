@@ -1,4 +1,5 @@
 #include "../includes/host.h"
+#include "../../client/includes/client.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -48,4 +49,8 @@ int init_host(char incoming_addr[], unsigned int port)
     connected_socket = accept(sock_id,(struct sockaddr *) &addr_storage, &sock_size);
     printf("%s: connection successful\n", __func__);
     return SUCCESS;
+}
+void read_socket(user_info *incoming_info)
+{
+	recv(connected_socket, incoming_info, sizeof(user_info), 0);
 }
