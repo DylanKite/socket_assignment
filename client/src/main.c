@@ -49,8 +49,8 @@ static void print_user_info()
  */
 int main(int argc, char *argv[])
 {
-    int port = atoi(argv[1]);
-    init_client(argv[0], port);
+    int port = atoi(argv[2]);
+    init_client(argv[1], port);
 
     int choice = 0;
     for(;;) {

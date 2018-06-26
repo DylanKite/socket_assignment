@@ -84,6 +84,6 @@ int read_user_file(user_info *read_user)
     strcpy(read_user->postal_code, strtok(NULL, ","));
     strcpy(read_user->province, strtok(NULL, ","));
     strcpy(read_user->country, strtok(NULL, ","));
-    strncpy(read_user->country,read_user->country, strlen(read_user->country) - 1);
+    strncpy(read_user->country,read_user->country, strlen(read_user->country));
     close(fd);
 }
