@@ -12,9 +12,11 @@ typedef struct {
 } user_info;
 
 int init_client(char IP_address[], unsigned int port);
-int close_connection();
 
-int send_message(user_info to_send);
+void send_message(user_info to_send);
 
-int write_user_to_file(user_info to_write);
-int read_user_file(user_info *read_user);
+void write_user_to_file(user_info to_write);
+void read_user_file(user_info *read_user);
+
+void print_user_info(user_info *user1);
+void query_data_base(int id);

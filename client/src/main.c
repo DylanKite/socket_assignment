@@ -3,7 +3,6 @@
 #include "../includes/client.h"
 
 
-static user_info user1 = {0};
 
 static void help()
 {
@@ -19,29 +18,10 @@ static void help()
             "9 Write To File\n"
             "10 Read From File\n"
             "11 Send Info\n"
-            "12 Exit program\n");
+            "12 Query Database\n"
+            "13 Exit program\n");
 }
-static void print_user_info()
-{
-    printf("USER INFO:\n"
-           "name: %s\n"
-           "id: %d\n"
-           "street number: %d\n"
-           "street name: %s\n"
-           "city: %s\n"
-           "postal code: %s\n"
-           "province: %s\n"
-           "country: %s\n"
-           "____________________________________\n",
-           user1.name,
-           user1.id,
-           user1.street_num,
-           user1.street_name,
-           user1.city,
-           user1.postal_code,
-           user1.province,
-           user1.country);
-}
+
 /*
  * Argument List:
  * argv[0]: address
@@ -50,11 +30,13 @@ static void print_user_info()
 int main(int argc, char *argv[])
 {
     int port = atoi(argv[2]);
+    int query_id =0;
+    user_info user1 = {0};
     init_client(argv[1], port);
 
     int choice = 0;
     for(;;) {
-        print_user_info();
+        print_user_info(&user1);
         help();
         scanf("%i", &choice);
         switch(choice) {
@@ -111,6 +93,12 @@ int main(int argc, char *argv[])
             break;
         }
         case 12: {
+            printf("enter ID to query\n");
+            scanf("%d", &query_id);
+            query_data_base(query_id);
+            break;
+        }
+        case 13: {
             exit(1);
             break;
         }

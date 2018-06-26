@@ -41,12 +41,15 @@ int init_client(char IP_address[], unsigned int port)
         return SUCCESS;
 }
 
-int send_message(user_info to_send)
+void send_message(user_info to_send)
 {
-    send(client_id, &to_send, sizeof(user_info), 0);
+    int size_of_int = sizeof(int);
+    send(client_id, &size_of_int, sizeof(int), 0);
+    sleep(1);
+    send(client_id, &to_send, sizeof(to_send), 0);
 }
 
-int write_user_to_file(user_info to_write)
+void write_user_to_file(user_info to_write)
 {
     char string_to_write[1000] = {"\0"};
     int fd = 0;
@@ -69,7 +72,41 @@ int write_user_to_file(user_info to_write)
     close(fd);
 }
 
-int read_user_file(user_info *read_user)
+void print_user_info(user_info *user1)
+{
+    printf("USER INFO:\n"
+           "name: %s\n"
+           "id: %d\n"
+           "street number: %d\n"
+           "street name: %s\n"
+           "city: %s\n"
+           "postal code: %s\n"
+           "province: %s\n"
+           "country: %s\n"
+           "____________________________________\n",
+           user1->name,
+           user1->id,
+           user1->street_num,
+           user1->street_name,
+           user1->city,
+           user1->postal_code,
+           user1->province,
+           user1->country);
+}
+
+void query_data_base(int id)
+{
+    user_info to_print;
+    int size_of_int = sizeof(int);
+    send(client_id, &size_of_int, sizeof(int), 0);
+    sleep(1);
+    send(client_id, &id, sizeof(int), 0);
+    recv(client_id, &to_print, sizeof(user_info), 0);
+
+    print_user_info(&to_print);
+}
+
+void read_user_file(user_info *read_user)
 {
     char string_to_read[1000];
     char split_string[100];
