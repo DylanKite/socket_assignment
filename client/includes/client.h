@@ -16,5 +16,5 @@ int close_connection();
 
 int send_message(user_info to_send);
 
-int write_user_to_file(user_info to_write);
-int read_user_file(user_info *read_user);
+void write_user_to_file(user_info to_write);
+void read_user_file(user_info *read_user);
