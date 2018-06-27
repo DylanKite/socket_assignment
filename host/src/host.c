@@ -56,15 +56,7 @@ int init_host(char incoming_addr[], unsigned int port)
 
 int read_socket(user_info *incoming_info)
 {
-	int incoming_message_size = 0;
-	int query_id =0;
-	recv(connected_socket, &incoming_message_size, sizeof(int), 0);
-	if (incoming_message_size == sizeof(int)) {
-		recv(connected_socket, &query_id, sizeof(int), 0);
-		return query_id;
-	}
-	printf("incoming message size %d\n", incoming_message_size);
-	recv(connected_socket, incoming_info, incoming_message_size, 0);
+    recv(connected_socket, incoming_info, sizeof(user_info), 0);
 	return 0;
 }
 

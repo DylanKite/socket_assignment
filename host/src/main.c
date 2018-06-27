@@ -20,11 +20,7 @@ int main(int argc, char *argv[])
 	for(;;)
 	{
 		read_return_val = read_socket(&user);
-		if(!read_return_val) {
-			host_write_user_to_file(user);
-		} else {
-			query_database(read_return_val);
-		}
+        host_write_user_to_file(user);
 	}
     return 0;
 }
